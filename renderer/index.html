@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electron Shortcuts App</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="auth-section">
+        <h2>Enregistrement</h2>
+        <form id="register-form">
+          <input
+            type="email"
+            id="email-register"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="password"
+            id="password-register"
+            placeholder="Mot de passe"
+            required
+          />
+          <button type="button" id="register-button">S'enregistrer</button>
+        </form>
+      </div>
+
+      <div class="auth-section">
+        <h2>Connexion</h2>
+        <form id="login-form">
+          <input type="email" id="email-login" placeholder="Email" required />
+          <input
+            type="password"
+            id="password-login"
+            placeholder="Mot de passe"
+            required
+          />
+          <button type="button" id="login-button">Se connecter</button>
+        </form>
+      </div>
+
+      <div class="folders-section">
+        <h2>Dossiers</h2>
+        <ul id="folders-list"></ul>
+      </div>
+    </div>
+    <!-- <div id="app">
+      <div id="burger-menu">
+        <button id="add-folder">+ Ajouter un dossier</button>
+        <ul id="folders-list"></ul>
+      </div>
+      <div id="main-content">
+        <h1 id="main-title">Liste des raccourcis</h1>
+        <button id="add-shortcut">+ Ajouter un raccourci</button>
+        <ul id="shortcuts-list"></ul>
+      </div>
+
+      <div id="dialog-container" style="display: none">
+        <div id="dialog-box">
+          <p id="dialog-message"></p>
+          <input type="text" id="dialog-input" />
+          <button id="dialog-ok">OK</button>
+          <button id="dialog-cancel">Annuler</button>
+        </div>
+      </div>
+    </div> -->
+
+    <script src="renderer.js"></script>
+  </body>
+</html>

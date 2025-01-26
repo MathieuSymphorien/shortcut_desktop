@@ -14,3 +14,7 @@ yarn-error.log*
 # Système
 .DS_Store
 Thumbs.db
+
+.env
+
+todelete
