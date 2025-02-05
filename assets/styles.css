@@ -1,176 +1,214 @@
-/* styles.css */
-
-/* Réinitialisation basique */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
 body {
-  font-family: "Segoe UI", Roboto, sans-serif;
-  background: #f0f2f5;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f4f7fc;
   color: #333;
-}
-
-/* Titres */
-h1 {
-  text-align: center;
-  margin-top: 40px;
-}
-h2 {
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-  color: #444;
-  margin-top: 20px;
-}
-
-/* Paragraphes */
-p {
-  text-align: center;
-  color: #666;
-  margin: 10px 0 30px;
-}
-
-/* Conteneur page Login */
-.container {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 0 auto;
-  max-width: 900px;
-  gap: 20px;
-  padding: 20px;
-}
-
-/* Pour le bloc switch */
-.switch-section {
-  text-align: center;
-  margin-top: 10px;
-}
-
-/* Auth sections (login/register) */
-.auth-section {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
-  flex: 0 0 300px;
-}
-.auth-section form {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
-.auth-section input {
-  margin-bottom: 12px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+
+.header {
+  background-color: #556ee6;
+  color: white;
+  width: 100%;
+  padding: 20px;
+  /* height: 60px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  /* position: fixed; */
+  top: 0;
+  z-index: 100;
+  padding-left: 70px; /* Décalage pour ne pas chevaucher le burger */
 }
-.auth-section button {
-  padding: 12px;
-  background: #556ee6;
-  color: #fff;
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.logout-button {
+  background: none;
   border: none;
-  border-radius: 4px;
+  font-size: 1.5rem;
+  color: white;
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-}
-.auth-section button:hover {
-  background: #445ad4;
 }
 
-/* Classe hidden (masquer un bloc) */
-.hidden {
-  display: none;
-}
-
-/* Zone notification (messages) */
-#notification {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: 300px;
-  max-width: 600px;
-  padding: 14px 20px;
-  text-align: center;
-  border-radius: 4px;
-  z-index: 9999;
-  opacity: 0;
-  color: #fff;
-  transition: opacity 0.3s ease;
-  font-size: 0.95rem;
-}
-#notification.success {
-  background: #4caf50; /* vert */
-  opacity: 1;
-}
-#notification.error {
-  background: #f44336; /* rouge */
-  opacity: 1;
-}
-
-/* Page app.html */
 .container-app {
   display: flex;
   gap: 20px;
-  max-width: 1000px;
-  margin: 20px auto;
-  padding: 0 20px;
+  margin-top: 120px;
+  width: 90%;
+  max-width: 1200px;
 }
 
-/* Dossiers */
-.folders-section,
-.shortcuts-section {
-  flex: 1;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+.folders-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #34495e;
   padding: 20px;
+  color: white;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 99;
 }
 
-.folders-section ul,
-.shortcuts-section ul {
+.folders-section.active {
+  transform: translateX(0);
+}
+
+.burger-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.folders-list {
   list-style: none;
-  margin: 10px 0;
   padding: 0;
+  margin-top: 40px;
 }
 
-.folder-item {
-  padding: 8px;
-  margin-bottom: 8px;
-  border: 1px solid #ccc;
+.folders-list li {
+  background-color: #556ee6;
+  padding: 10px;
+  margin-bottom: 10px;
   border-radius: 4px;
   cursor: pointer;
-}
-.folder-item:hover {
-  background: #e8e9f1;
+  transition: background-color 0.3s ease;
 }
 
-/* Formulaire ajout dossier */
-.add-folder,
-.add-shortcut {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
+.folders-list li:hover {
+  background-color: #1abc9c;
 }
+
 .add-folder input,
-.add-shortcut input {
-  flex: 1;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.add-folder button {
   padding: 10px;
-}
-.add-folder button,
-.add-shortcut button {
-  padding: 10px 14px;
-  background: #556ee6;
-  color: #fff;
+  font-size: 1rem;
+  margin-top: 10px;
   border: none;
   border-radius: 4px;
+  width: calc(100% - 20px);
+  display: block;
+}
+
+.add-folder button {
+  background-color: #1abc9c;
+  color: white;
   cursor: pointer;
 }
-.add-folder button:hover,
-.add-shortcut button:hover {
-  background: #445ad4;
+
+.add-folder button:hover {
+  background-color: #16a085;
+}
+
+.folders-section,
+.categories-section,
+.shortcuts-section {
+  margin-top: 20px;
+}
+
+/* =============================
+   Styles pour la liste des raccourcis
+   ============================= */
+#shortcuts-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.shortcut-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  cursor: grab;
+}
+
+.shortcut-item:active {
+  cursor: grabbing;
+  transform: scale(0.98);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Drag handle */
+.drag-handle {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  color: #888;
+  cursor: grab;
+}
+
+/* Zone de contenu (les inputs) */
+.shortcut-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.shortcut-content .shortcut-key-input,
+.shortcut-content .shortcut-explanation-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+}
+
+.shortcut-content .shortcut-key-input {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.shortcut-content .shortcut-explanation-input {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Zone d'actions (sélecteur + bouton) */
+.shortcut-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-left: 10px;
+}
+
+.shortcut-category-select {
+  padding: 4px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 1.2rem;
+  cursor: pointer;
 }

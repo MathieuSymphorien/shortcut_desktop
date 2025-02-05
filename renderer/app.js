@@ -125,11 +125,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         shortcutsList.appendChild(categoryLi);
 
         const categoryShortcuts = shortcuts.filter(
-          (sc) => sc.category_id === category.id
+          (sc) => Number(sc.category_id) === Number(category.id)
         );
+
+        // Pour chaque raccourci de la catégorie en cours
         categoryShortcuts.forEach((sc) => {
+          // Création de l'élément li avec une classe dédiée
           const shortcutLi = document.createElement("li");
+          shortcutLi.classList.add("shortcut-item");
           shortcutLi.dataset.shortcutId = sc.id;
+
+          // 1. Création du drag handle
+          const dragHandle = document.createElement("div");
+          dragHandle.classList.add("drag-handle");
+          dragHandle.innerHTML = '<i class="fas fa-grip-lines"></i>';
+
+          // 2. Création de la zone de contenu
+          const shortcutContent = document.createElement("div");
+          shortcutContent.classList.add("shortcut-content");
 
           const shortcutKeyInput = document.createElement("input");
           shortcutKeyInput.type = "text";
@@ -150,6 +163,13 @@ document.addEventListener("DOMContentLoaded", async () => {
               shortcutExplanationInput.value
             )
           );
+
+          shortcutContent.appendChild(shortcutKeyInput);
+          shortcutContent.appendChild(shortcutExplanationInput);
+
+          // 3. Création de la zone d'actions
+          const shortcutActions = document.createElement("div");
+          shortcutActions.classList.add("shortcut-actions");
 
           const categorySelectInput = document.createElement("select");
           categorySelectInput.classList.add("shortcut-category-select");
@@ -173,11 +193,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             deleteShortcut(sc.id)
           );
 
-          shortcutLi.appendChild(shortcutKeyInput);
-          shortcutLi.appendChild(shortcutExplanationInput);
-          shortcutLi.appendChild(categorySelectInput);
-          shortcutLi.appendChild(deleteShortcutButton);
+          shortcutActions.appendChild(categorySelectInput);
+          shortcutActions.appendChild(deleteShortcutButton);
 
+          // Assemblage de l'élément raccourci
+          shortcutLi.appendChild(dragHandle);
+          shortcutLi.appendChild(shortcutContent);
+          shortcutLi.appendChild(shortcutActions);
+
+          // Ajout dans la liste globale
           shortcutsList.appendChild(shortcutLi);
         });
 
@@ -410,4 +434,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Initial load
   loadFolders();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const burgerMenuButton = document.getElementById("burger-menu");
+  const foldersSection = document.querySelector(".folders-section");
+
+  burgerMenuButton.addEventListener("click", () => {
+    foldersSection.classList.toggle("active");
+  });
 });

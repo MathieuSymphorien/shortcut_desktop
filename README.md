@@ -26,6 +26,23 @@ Electron Shortcuts App est une application de bureau construite avec Electron.js
    npm start
    ```
 
+## Création d’un installateur (Build de l’application)
+
+Pour créer un installateur utilisable sur Windows, suivez les étapes ci-dessous :
+
+Installez les dépendances nécessaires pour le build (si ce n’est pas déjà fait) :
+
+npm install
+Créez l’installateur de l’application :
+
+npm run build
+Une fois la commande terminée, un fichier exécutable sera disponible dans le dossier dist :
+
+dist/ShortcutDesktopApp Setup 1.0.0.exe
+Double-cliquez sur le fichier ShortcutDesktopApp Setup 1.0.0.exe pour lancer l’installation.
+
+Suivez les instructions de l’installateur. Un raccourci sera créé sur le bureau si tout est bien configuré.
+
 ## Structure du Projet
 
 ```

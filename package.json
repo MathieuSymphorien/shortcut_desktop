@@ -4,13 +4,15 @@
   "description": "",
   "main": "main/main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^33.3.1"
+    "electron": "^33.3.1",
+    "electron-builder": "^25.1.8"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -18,5 +20,31 @@
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.13.1",
     "shortcut_desktop": "file:"
+  },
+  "build": {
+    "appId": "com.shortcut.desktop",
+    "productName": "ShortcutDesktop",
+    "files": [
+      "main/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "extraResources": [
+      {
+        "from": "node_modules/pg",
+        "to": "app/node_modules/pg"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "shortcutName": "ShortcutDesktopApp"
+    }
   }
 }
