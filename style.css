@@ -1,0 +1,13 @@
+/* style.css */
+body {
+  padding-top: 60px; /* Pour laisser de l'espace au navbar fixe */
+  background-color: #f8f9fa;
+}
+
+.list-group-item {
+  cursor: move;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}

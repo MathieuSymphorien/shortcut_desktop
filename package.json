@@ -1,50 +1,18 @@
 {
   "name": "shortcut_desktop",
   "version": "1.0.0",
-  "description": "",
-  "main": "main/main.js",
+  "description": "Electron Shortcuts App est une application de bureau construite avec Electron.js. Elle permet de gérer et de mémoriser les raccourcis clavier pour différents logiciels de manière simple et intuitive.",
+  "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "electron": "^33.3.1",
-    "electron-builder": "^25.1.8"
-  },
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "dotenv": "^16.4.7",
-    "jsonwebtoken": "^9.0.2",
-    "pg": "^8.13.1",
+    "electron": "^34.0.2",
+    "electron-store": "^8.2.0",
     "shortcut_desktop": "file:"
-  },
-  "build": {
-    "appId": "com.shortcut.desktop",
-    "productName": "ShortcutDesktop",
-    "files": [
-      "main/**/*",
-      "node_modules/**/*"
-    ],
-    "directories": {
-      "output": "dist"
-    },
-    "extraResources": [
-      {
-        "from": "node_modules/pg",
-        "to": "app/node_modules/pg"
-      }
-    ],
-    "win": {
-      "target": "nsis",
-      "icon": "assets/icon.ico"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "shortcutName": "ShortcutDesktopApp"
-    }
   }
 }
