@@ -151,54 +151,74 @@ document.getElementById("themeForm").addEventListener("submit", async (e) => {
  ********************/
 // Affiche pour chaque thème du dossier courant un titre et la liste des raccourcis
 function renderThemes() {
+  const searchQuery = document
+    .getElementById("searchInput")
+    .value.trim()
+    .toLowerCase();
   const container = document.getElementById("themesContainer");
   container.innerHTML = "";
   const themes = folders[currentFolder] || {};
+
   Object.keys(themes).forEach((theme) => {
-    // Section pour le thème
-    const section = document.createElement("div");
-    section.classList.add("mb-4");
-    const header = document.createElement("h4");
-    header.textContent = theme;
-    section.appendChild(header);
-
-    // Conteneur pour la liste des raccourcis de ce thème
-    const list = document.createElement("div");
-    list.id = "theme-container-" + theme;
-    list.classList.add("list-group");
-
-    themes[theme].forEach((shortcut) => {
-      const card = document.createElement("div");
-      card.classList.add("list-group-item");
-      card.dataset.id = shortcut.id; // Stocke l'id pour le drag & drop et l'édition
-      card.innerHTML = `
-        <div class="d-flex justify-content-between align-items-center">
-          <div>
-            <strong>${shortcut.key}</strong><br>
-            <small>${shortcut.description}</small>
-          </div>
-          <div>
-            <button class="btn btn-sm btn-warning me-2" onclick="editShortcut('${shortcut.id}')">Modifier</button>
-            <button class="btn btn-sm btn-danger" onclick="deleteShortcut('${shortcut.id}', '${theme}')">Supprimer</button>
-          </div>
-        </div>
-      `;
-      list.appendChild(card);
+    // Filtrer les raccourcis de ce thème en fonction de la recherche
+    const matchingShortcuts = themes[theme].filter((shortcut) => {
+      if (!searchQuery) return true; // aucun filtre, on affiche tout
+      return (
+        shortcut.key.toLowerCase().includes(searchQuery) ||
+        shortcut.description.toLowerCase().includes(searchQuery)
+      );
     });
 
-    section.appendChild(list);
-    container.appendChild(section);
+    if (matchingShortcuts.length > 0) {
+      // Création de la section du thème
+      const section = document.createElement("div");
+      section.classList.add("mb-4");
+      const header = document.createElement("h4");
+      header.textContent = theme;
+      section.appendChild(header);
 
-    // Initialise SortableJS pour le glisser/déposer dans ce conteneur
-    new Sortable(list, {
-      group: "shared",
-      animation: 150,
-      onEnd: function (evt) {
-        updateThemeOrder(theme, list);
-      },
-    });
+      // Conteneur pour la liste des raccourcis du thème filtré
+      const list = document.createElement("div");
+      list.id = "theme-container-" + theme;
+      list.classList.add("list-group");
+
+      matchingShortcuts.forEach((shortcut) => {
+        const card = document.createElement("div");
+        card.classList.add("list-group-item");
+        card.dataset.id = shortcut.id;
+        card.innerHTML = `
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <strong>${shortcut.key}</strong><br>
+              <small>${shortcut.description}</small>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-warning me-2" onclick="editShortcut('${shortcut.id}')">Modifier</button>
+              <button class="btn btn-sm btn-danger" onclick="deleteShortcut('${shortcut.id}', '${theme}')">Supprimer</button>
+            </div>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+
+      section.appendChild(list);
+      container.appendChild(section);
+
+      // Initialise SortableJS pour ce conteneur (pour conserver le glisser/déposer)
+      new Sortable(list, {
+        group: "shared",
+        animation: 150,
+        onEnd: function (evt) {
+          updateThemeOrder(theme, list);
+        },
+      });
+    }
   });
 }
+
+document.getElementById("searchInput").addEventListener("input", function () {
+  renderThemes();
+});
 
 // Mise à jour de l'ordre des raccourcis dans un thème en se basant sur l'ordre dans le DOM
 function updateThemeOrder(theme, list) {
