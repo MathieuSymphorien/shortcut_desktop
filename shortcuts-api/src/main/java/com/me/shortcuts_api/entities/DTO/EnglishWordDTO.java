@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class EnglishWordDTO {
-
+    private Long id;
     private String theme;
     private String word;
     private String translation;

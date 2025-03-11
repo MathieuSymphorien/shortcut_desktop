@@ -3,6 +3,7 @@ package com.me.shortcuts_api.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "users")
