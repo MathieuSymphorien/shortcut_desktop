@@ -7,3 +7,8 @@ contextBridge.exposeInMainWorld("electronAPI", {
   getFolders: () => ipcRenderer.invoke("get-folders"),
   saveFolders: (folders) => ipcRenderer.invoke("save-folders", folders),
 });
+
+contextBridge.exposeInMainWorld("env", {
+  API_URL: process.env.API_URL,
+  API_TOKEN: process.env.API_TOKEN,
+});

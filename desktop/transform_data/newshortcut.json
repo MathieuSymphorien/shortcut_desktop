@@ -1,0 +1,136 @@
+{
+  "Blender": {
+    "Default": [
+      {
+        "id": "1",
+        "key": "num pad",
+        "description": "vue de cam differente"
+      },
+      {
+        "id": "2",
+        "key": "R  + (X | Y | Z )",
+        "description": "Rotate sur un axe précis"
+      },
+      {
+        "id": "3",
+        "key": "ALT + ( G | S | R )",
+        "description": "Reset a la forme de base"
+      },
+      {
+        "id": "4",
+        "key": "tips",
+        "description": "possibilité de set un nouveau defalt avec CTRL + A > all transform"
+      },
+      {
+        "id": "5",
+        "key": "Space barre",
+        "description": "menu général"
+      },
+      {
+        "id": "6",
+        "key": "Shift + A",
+        "description": "Menu d'ajout, relatif au mode actuel"
+      },
+      {
+        "id": "7",
+        "key": "Shift + click souris",
+        "description": "deplacement camera"
+      },
+      {
+        "id": "8",
+        "key": "Ctrl  +num pad",
+        "description": "change la vue ( 1,7,3 pour les touches interessantes)"
+      },
+      {
+        "id": "9",
+        "key": "'.' (objt selectionné)",
+        "description": "zoom sur l'objet"
+      },
+      {
+        "id": "10",
+        "key": "Shift + S",
+        "description": "menu des curseurs"
+      },
+      {
+        "id": "11",
+        "key": "Shift  + D",
+        "description": "dupliquer"
+      },
+      {
+        "id": "12",
+        "key": "\"global\" (menu en ahut)",
+        "description": "permet de modifier l'axe de reference"
+      },
+      {
+        "id": "13",
+        "key": "acceder au 'local' d'un objet",
+        "description": "2 fois la commande référente (exemple deplacement ca sera 'G' > 'Y' > 'Y'"
+      },
+      {
+        "id": "14",
+        "key": "Outil 'snap'",
+        "description": "permet de modifier les deplacement des objets"
+      },
+      {
+        "id": "15",
+        "key": "Select objt   + 'Ctrl'",
+        "description": "permet d'utiliser le snap en cours"
+      },
+      {
+        "id": "16",
+        "key": "Le snap est fesable avec toute les modifs d'objets",
+        "description": "Fesable avec Scale/ Rotate / deplacement"
+      },
+      {
+        "id": "17",
+        "key": "Changer centre objet",
+        "description": "Avec le curseur 3D dans 'objet > setOrigine > 3D cursuer'"
+      },
+      {
+        "id": "18",
+        "key": "'ctrl' + space",
+        "description": "avoir une vue en full screen"
+      },
+      {
+        "id": "19",
+        "key": "Ctrl J",
+        "description": "permet de fussioner tout les éléments"
+      },
+      {
+        "id": "20",
+        "key": "Z",
+        "description": "permet de changer la vue"
+      },
+      {
+        "id": "21",
+        "key": "G + Z",
+        "description": "Déplacement uniquement sur un axe"
+      },
+      {
+        "id": "22",
+        "key": "G",
+        "description": "deplacé"
+      },
+      {
+        "id": "23",
+        "key": "R",
+        "description": "Rotate"
+      },
+      {
+        "id": "24",
+        "key": "S",
+        "description": "Scale"
+      },
+      {
+        "id": "25",
+        "key": "G + (X | Y)",
+        "description": "Déplacement uniquement sur les axes"
+      },
+      {
+        "id": "26",
+        "key": "S + (X | Y | Z )",
+        "description": "Scale sur un axe précis"
+      }
+    ]
+  }
+}

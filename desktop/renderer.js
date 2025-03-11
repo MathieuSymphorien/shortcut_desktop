@@ -247,23 +247,65 @@ document
     folders[currentFolder][theme].push({ id, key, description });
     renderThemes();
     await saveFolders();
+
+    if (currentFolder === "Anglais") {
+      try {
+        await sendShortcutToApi({ id, key, description, theme });
+      } catch (error) {
+        console.error("Erreur lors de l’envoi à l’API :", error);
+      }
+    }
+
     e.target.reset();
   });
 
+//Envoi d'un raccourci à l'API
+async function sendShortcutToApi(shortcutData) {
+  const apiUrl = window.env.API_URL;
+  const token = window.env.API_TOKEN;
+
+  // Construisez l’URL selon votre Spring Boot (ex: "/shortcuts")
+  const endpoint = `${apiUrl}/api/import`;
+  console.log(shortcutData);
+  // Exemple avec fetch :
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(shortcutData),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Erreur API : ${response.status} - ${response.statusText}`);
+  } else {
+    console.log("Raccourci envoyé à l’API avec succès !");
+  }
+}
+
 // Suppression d'un raccourci
-function deleteShortcut(id, theme) {
+async function deleteShortcut(id, theme) {
   folders[currentFolder][theme] = folders[currentFolder][theme].filter(
     (s) => s.id !== id
   );
   renderThemes();
   saveFolders();
+
+  if (currentFolder === "Anglais") {
+    try {
+      await sendShortcutToApi({ key, description, theme });
+    } catch (error) {
+      console.error("Erreur lors de l’envoi à l’API :", error);
+    }
+  }
 }
 
 /********************
  * Modification d'un Raccourci (via Modal)
  ********************/
 // Ouvre le modal en remplissant les champs avec les données du raccourci
-function editShortcut(id) {
+async function editShortcut(id) {
   const themes = folders[currentFolder];
   let foundShortcut = null;
   let currentTheme = null;
@@ -284,40 +326,59 @@ function editShortcut(id) {
 
   const editModal = new bootstrap.Modal(document.getElementById("editModal"));
   editModal.show();
+  if (currentFolder === "Anglais") {
+    try {
+      await sendShortcutToApi({ key, description, theme });
+    } catch (error) {
+      console.error("Erreur lors de l’envoi à l’API :", error);
+    }
+  }
 }
 
 // Enregistrement des modifications effectuées dans le modal
-document.getElementById("saveEditBtn").addEventListener("click", function () {
-  const id = document.getElementById("editShortcutId").value;
-  const newKey = document.getElementById("editShortcutKey").value;
-  const newDesc = document.getElementById("editShortcutDescription").value;
-  const newTheme = document.getElementById("editShortcutTheme").value;
+document
+  .getElementById("saveEditBtn")
+  .addEventListener("click", async function () {
+    const id = document.getElementById("editShortcutId").value;
+    const newKey = document.getElementById("editShortcutKey").value;
+    const newDesc = document.getElementById("editShortcutDescription").value;
+    const newTheme = document.getElementById("editShortcutTheme").value;
 
-  let foundShortcut = null;
-  // Recherche et suppression du raccourci dans son thème d'origine
-  Object.keys(folders[currentFolder]).forEach((theme) => {
-    const index = folders[currentFolder][theme].findIndex((sc) => sc.id === id);
-    if (index !== -1) {
-      foundShortcut = folders[currentFolder][theme][index];
-      folders[currentFolder][theme].splice(index, 1);
+    let foundShortcut = null;
+    // Recherche et suppression du raccourci dans son thème d'origine
+    Object.keys(folders[currentFolder]).forEach((theme) => {
+      const index = folders[currentFolder][theme].findIndex(
+        (sc) => sc.id === id
+      );
+      if (index !== -1) {
+        foundShortcut = folders[currentFolder][theme][index];
+        folders[currentFolder][theme].splice(index, 1);
+      }
+    });
+    if (foundShortcut) {
+      foundShortcut.key = newKey;
+      foundShortcut.description = newDesc;
+      // Ajoute le raccourci dans le thème choisi (en fin de liste)
+      if (!folders[currentFolder][newTheme]) {
+        folders[currentFolder][newTheme] = [];
+      }
+      folders[currentFolder][newTheme].push(foundShortcut);
+    }
+    renderThemes();
+    updateThemeDropdowns();
+    saveFolders();
+    const modalEl = document.getElementById("editModal");
+    const modalInstance = bootstrap.Modal.getInstance(modalEl);
+    modalInstance.hide();
+
+    if (currentFolder === "Anglais") {
+      try {
+        await sendShortcutToApi({ key, description, theme });
+      } catch (error) {
+        console.error("Erreur lors de l’envoi à l’API :", error);
+      }
     }
   });
-  if (foundShortcut) {
-    foundShortcut.key = newKey;
-    foundShortcut.description = newDesc;
-    // Ajoute le raccourci dans le thème choisi (en fin de liste)
-    if (!folders[currentFolder][newTheme]) {
-      folders[currentFolder][newTheme] = [];
-    }
-    folders[currentFolder][newTheme].push(foundShortcut);
-  }
-  renderThemes();
-  updateThemeDropdowns();
-  saveFolders();
-  const modalEl = document.getElementById("editModal");
-  const modalInstance = bootstrap.Modal.getInstance(modalEl);
-  modalInstance.hide();
-});
 
 // Ajout de l'écouteur pour le bouton d'export
 document.getElementById("exportBtn").addEventListener("click", function () {

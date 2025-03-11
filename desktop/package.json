@@ -40,7 +40,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "electron-store": "^8.2.0"
+    "dotenv": "^16.4.7",
+    "electron-store": "^8.2.0",
+    "shortcut_desktop": "file:"
   },
   "devDependencies": {
     "electron": "^34.1.1",

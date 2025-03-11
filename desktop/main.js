@@ -5,6 +5,7 @@ const Store = require("electron-store");
 
 // On sauvegarde dans "folders". Le store créera un fichier JSON (par exemple folders.json).
 const store = new Store({ name: "folders" });
+require("dotenv").config();
 
 function createWindow() {
   const win = new BrowserWindow({
