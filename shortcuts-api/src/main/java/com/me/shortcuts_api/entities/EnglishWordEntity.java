@@ -18,5 +18,6 @@ public class EnglishWordEntity {
     private String theme;
     private String word;
     private String translation;
+    @Column(name = "learning_level")
     private int learningLevel = 1;
 }
