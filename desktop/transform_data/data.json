@@ -1,0 +1,720 @@
+{
+  "Blender": {
+    "Default": [
+      {
+        "id": "4",
+        "key": "tips",
+        "description": "possibilité de set un nouveau defalt avec CTRL + A > all transform"
+      },
+      {
+        "id": "5",
+        "key": "Space barre",
+        "description": "menu général"
+      },
+      {
+        "id": "6",
+        "key": "Shift + A",
+        "description": "Menu d'ajout, relatif au mode actuel"
+      },
+      {
+        "id": "9",
+        "key": "'.' (objt selectionné)",
+        "description": "zoom sur l'objet"
+      },
+      {
+        "id": "10",
+        "key": "Shift + S",
+        "description": "menu des curseurs"
+      },
+      {
+        "id": "18",
+        "key": "'ctrl' + space",
+        "description": "avoir une vue en full screen"
+      }
+    ],
+    "Caméra": [
+      {
+        "id": "1",
+        "key": "num pad",
+        "description": "vue de cam differente"
+      },
+      {
+        "id": "7",
+        "key": "Shift + click souris",
+        "description": "deplacement camera"
+      },
+      {
+        "id": "8",
+        "key": "Ctrl  +num pad",
+        "description": "change la vue ( 1,7,3 pour les touches interessantes)"
+      },
+      {
+        "id": "20",
+        "key": "Z",
+        "description": "permet de changer la vue"
+      }
+    ],
+    "Tools object": [
+      {
+        "id": "2",
+        "key": "R  + (X | Y | Z )",
+        "description": "Rotate sur un axe précis"
+      },
+      {
+        "id": "3",
+        "key": "ALT + ( G | S | R )",
+        "description": "Reset a la forme de base"
+      },
+      {
+        "id": "11",
+        "key": "Shift  + D",
+        "description": "dupliquer"
+      },
+      {
+        "id": "12",
+        "key": "\"global\" (menu en ahut)",
+        "description": "permet de modifier l'axe de reference"
+      },
+      {
+        "id": "13",
+        "key": "acceder au 'local' d'un objet",
+        "description": "2 fois la commande référente (exemple deplacement ca sera 'G' > 'Y' > 'Y'"
+      },
+      {
+        "id": "14",
+        "key": "Outil 'snap'",
+        "description": "permet de modifier les deplacement des objets"
+      },
+      {
+        "id": "15",
+        "key": "Select objt   + 'Ctrl'",
+        "description": "permet d'utiliser le snap en cours"
+      },
+      {
+        "id": "16",
+        "key": "Le snap est fesable avec toute les modifs d'objets",
+        "description": "Fesable avec Scale/ Rotate / deplacement"
+      },
+      {
+        "id": "17",
+        "key": "Changer centre objet",
+        "description": "Avec le curseur 3D dans 'objet > setOrigine > 3D cursuer'"
+      },
+      {
+        "id": "19",
+        "key": "Ctrl J",
+        "description": "permet de fussioner tout les éléments"
+      },
+      {
+        "id": "21",
+        "key": "G + Z",
+        "description": "Déplacement uniquement sur un axe"
+      },
+      {
+        "id": "22",
+        "key": "G",
+        "description": "deplacé"
+      },
+      {
+        "id": "23",
+        "key": "R",
+        "description": "Rotate"
+      },
+      {
+        "id": "24",
+        "key": "S",
+        "description": "Scale"
+      },
+      {
+        "id": "25",
+        "key": "G + (X | Y)",
+        "description": "Déplacement uniquement sur les axes"
+      },
+      {
+        "id": "26",
+        "key": "S + (X | Y | Z )",
+        "description": "Scale sur un axe précis"
+      }
+    ]
+  },
+  "Unity": {
+    "Default": [],
+    "terrain": [],
+    "Tool Terrain": [
+      {
+        "id": "1739116784410",
+        "key": "D",
+        "description": "Rotate brush"
+      },
+      {
+        "id": "1739116737113",
+        "key": "A",
+        "description": "puissance du brush"
+      },
+      {
+        "id": "1739116758097",
+        "key": "S",
+        "description": "la taille du brush"
+      },
+      {
+        "id": "1739116868909",
+        "key": "Raise or Lower Terrain",
+        "description": "se situe dans la modification du terrain avec cette selection"
+      }
+    ]
+  },
+  "Anglais": {
+    "Default": [],
+    "Expression": [
+      {
+        "id": "1740420425319",
+        "key": "pipe down",
+        "description": "faire le silence"
+      },
+      {
+        "id": "1740430668943",
+        "key": "get cocky",
+        "description": "devenir arrogant"
+      },
+      {
+        "id": "1740587856720",
+        "key": "I dropped by for",
+        "description": "je suis passé pour "
+      },
+      {
+        "id": "1740588118666",
+        "key": "you got torn up",
+        "description": "tu es déchiré (tu t'es fait mal)"
+      },
+      {
+        "id": "1740757581462",
+        "key": "dial it down",
+        "description": "Laisse tomber pour l'instant"
+      },
+      {
+        "id": "1740761604281",
+        "key": "screw you",
+        "description": "va te faire voir"
+      },
+      {
+        "id": "1740771437436",
+        "key": "for the sake",
+        "description": "pour le bien"
+      },
+      {
+        "id": "1740771732889",
+        "key": "turn the tide in a jiffy",
+        "description": "inversé la tendance en un tournemain"
+      },
+      {
+        "id": "1740775381778",
+        "key": "to go toe to toe",
+        "description": "aller de pair avec "
+      },
+      {
+        "id": "1741024853812",
+        "key": "don't screw with me",
+        "description": "te fous pas de moi (vulgaire ?)"
+      },
+      {
+        "id": "1741024891842",
+        "key": "don't screw up",
+        "description": "ne te trompe pas"
+      },
+      {
+        "id": "1741025645919",
+        "key": "we got this far",
+        "description": "nous sommes arrivé jusqu'ici"
+      }
+    ],
+    "Vocabulaire (non verbe)": [
+      {
+        "id": "1740420631096",
+        "key": "worship",
+        "description": "culte"
+      },
+      {
+        "id": "1740420783724",
+        "key": "shipwreck",
+        "description": "naufrage"
+      },
+      {
+        "id": "1740420875567",
+        "key": "nastiness",
+        "description": "méchanceté"
+      },
+      {
+        "id": "1740420895241",
+        "key": "nasty",
+        "description": "méchant"
+      },
+      {
+        "id": "1740421504447",
+        "key": "thick",
+        "description": "épais"
+      },
+      {
+        "id": "1740421606372",
+        "key": "scrawny",
+        "description": "maigre"
+      },
+      {
+        "id": "1740421640876",
+        "key": "slanty eyes",
+        "description": "yeux bridé"
+      },
+      {
+        "id": "1740421888292",
+        "key": "whip",
+        "description": "fouet"
+      },
+      {
+        "id": "1740422433691",
+        "key": "on the brink",
+        "description": "au bord"
+      },
+      {
+        "id": "1740429966529",
+        "key": "cloak",
+        "description": "manteau"
+      },
+      {
+        "id": "1740480584974",
+        "key": "lonesome",
+        "description": "solitaire"
+      },
+      {
+        "id": "1740481428032",
+        "key": "mere",
+        "description": "simplze"
+      },
+      {
+        "id": "1740509925396",
+        "key": "claw",
+        "description": "griffe"
+      },
+      {
+        "id": "1740510041179",
+        "key": "weath",
+        "description": "richesse"
+      },
+      {
+        "id": "1740587395461",
+        "key": "stiff",
+        "description": "rigide"
+      },
+      {
+        "id": "1740604970239",
+        "key": "youth",
+        "description": "jeunesse"
+      },
+      {
+        "id": "1740604982667",
+        "key": "reckless",
+        "description": "temeraire"
+      },
+      {
+        "id": "1740605150004",
+        "key": "heed",
+        "description": "attention"
+      },
+      {
+        "id": "1740605835498",
+        "key": "sharply",
+        "description": "nettement"
+      },
+      {
+        "id": "1740606937772",
+        "key": "sleazy",
+        "description": "sordide / miteux"
+      },
+      {
+        "id": "1740758433851",
+        "key": "psyched",
+        "description": "excité"
+      },
+      {
+        "id": "1740771316290",
+        "key": "a warm up",
+        "description": "un échauffement"
+      },
+      {
+        "id": "1740772164909",
+        "key": "ape",
+        "description": "singe"
+      },
+      {
+        "id": "1740772279009",
+        "key": "the bunch",
+        "description": "le groupe"
+      },
+      {
+        "id": "1740772512664",
+        "key": "rough",
+        "description": "rugueux"
+      },
+      {
+        "id": "1740772643201",
+        "key": "cheetah",
+        "description": "guepard"
+      },
+      {
+        "id": "1740775586686",
+        "key": "stubborn",
+        "description": "tetu"
+      },
+      {
+        "id": "1740775766363",
+        "key": "barely",
+        "description": "a peine"
+      },
+      {
+        "id": "1740775885620",
+        "key": "pace",
+        "description": "rythme"
+      },
+      {
+        "id": "1740776414726",
+        "key": "tribe",
+        "description": "tribu"
+      },
+      {
+        "id": "1740916539607",
+        "key": "wager",
+        "description": "pari"
+      },
+      {
+        "id": "1740916836597",
+        "key": "shred",
+        "description": "un brin / un morceau / un lambeau"
+      },
+      {
+        "id": "1740917985710",
+        "key": "a limb",
+        "description": "un membre (du corps humain)"
+      },
+      {
+        "id": "1740934511491",
+        "key": "gushing",
+        "description": "jaillisement"
+      },
+      {
+        "id": "1741023830251",
+        "key": "thin",
+        "description": "mince"
+      },
+      {
+        "id": "1741024058953",
+        "key": "ash",
+        "description": "cendre"
+      },
+      {
+        "id": "1741024256314",
+        "key": "marvelous",
+        "description": "merveilleux"
+      },
+      {
+        "id": "1741024443285",
+        "key": "squarely",
+        "description": "carrement"
+      },
+      {
+        "id": "1741024573384",
+        "key": "wimp",
+        "description": "mauviette"
+      },
+      {
+        "id": "1741024666538",
+        "key": "paltry",
+        "description": "dérisoire"
+      },
+      {
+        "id": "1741024792246",
+        "key": "a vow",
+        "description": "un voeu"
+      },
+      {
+        "id": "1741025149197",
+        "key": "a chill",
+        "description": "un frisson"
+      },
+      {
+        "id": "1741025548652",
+        "key": "shrine",
+        "description": "Sanctuaire / Tombeau"
+      },
+      {
+        "id": "1741025739316",
+        "key": "frankly",
+        "description": "franchement"
+      },
+      {
+        "id": "1741026107734",
+        "key": "stretch",
+        "description": "extensible"
+      },
+      {
+        "id": "1741286931844",
+        "key": "gloomy",
+        "description": "cafardeux"
+      },
+      {
+        "id": "1741369336916",
+        "key": "roughly",
+        "description": "a peu pres"
+      },
+      {
+        "id": "1741369626141",
+        "key": "muddy",
+        "description": "boueux"
+      },
+      {
+        "id": "1741369734739",
+        "key": "wretch",
+        "description": "misérable"
+      },
+      {
+        "id": "1741369788463",
+        "key": "unsightly",
+        "description": "disgracieux"
+      },
+      {
+        "id": "1741425596616",
+        "key": "tough",
+        "description": "difficile / dur"
+      },
+      {
+        "id": "1741426775735",
+        "key": "loath",
+        "description": "répugnance"
+      },
+      {
+        "id": "1741426825851",
+        "key": "chilldhood",
+        "description": "enfance"
+      },
+      {
+        "id": "1741427018230",
+        "key": "sligh",
+        "description": "léger"
+      },
+      {
+        "id": "1741552368234",
+        "key": "sigh",
+        "description": "un soupir"
+      },
+      {
+        "id": "1741552761302",
+        "key": "forsaken",
+        "description": "abandonné"
+      },
+      {
+        "id": "1741552907321",
+        "key": "besides",
+        "description": "en plus"
+      },
+      {
+        "id": "1741552926484",
+        "key": "beside",
+        "description": "à côté de"
+      },
+      {
+        "id": "1741604428653",
+        "key": "grudge",
+        "description": "rancune"
+      }
+    ],
+    "Vocabulaire (verbe)": [
+      {
+        "id": "1740421815624",
+        "key": "harm",
+        "description": "nuire"
+      },
+      {
+        "id": "1740429984043",
+        "key": "to cloak",
+        "description": "dissimuler"
+      },
+      {
+        "id": "1740430036825",
+        "key": "brag",
+        "description": "vanter"
+      },
+      {
+        "id": "1740480671149",
+        "key": "spare me",
+        "description": "épargne moi"
+      },
+      {
+        "id": "1740480929164",
+        "key": "braid",
+        "description": "tresser"
+      },
+      {
+        "id": "1740480963304",
+        "key": "bury",
+        "description": "enterrer"
+      },
+      {
+        "id": "1740568022399",
+        "key": "to leverage",
+        "description": "tirer partie / exploiter"
+      },
+      {
+        "id": "1740569085101",
+        "key": "to survey",
+        "description": "enqueter"
+      },
+      {
+        "id": "1740586812458",
+        "key": "to dazzle",
+        "description": "éblouir"
+      },
+      {
+        "id": "1740605402199",
+        "key": "shred",
+        "description": "déchiqueter"
+      },
+      {
+        "id": "1740606788371",
+        "key": "to flaunt",
+        "description": "le montrer à tous / faire étalage"
+      },
+      {
+        "id": "1740756229946",
+        "key": "pinpoint",
+        "description": "identifier"
+      },
+      {
+        "id": "1740756966488",
+        "key": "to haul",
+        "description": "transporter"
+      },
+      {
+        "id": "1740758282359",
+        "key": "to scatter",
+        "description": "se disperser"
+      },
+      {
+        "id": "1740758409630",
+        "key": "to soak",
+        "description": "tremper"
+      },
+      {
+        "id": "1740760742192",
+        "key": "to bother",
+        "description": "déranger"
+      },
+      {
+        "id": "1740771225714",
+        "key": "to chew",
+        "description": "macher"
+      },
+      {
+        "id": "1740771959110",
+        "key": "to faze",
+        "description": "déconcentrer"
+      },
+      {
+        "id": "1740775629192",
+        "key": "to crush",
+        "description": "écraser"
+      },
+      {
+        "id": "1740917750697",
+        "key": "to unleash",
+        "description": "libérer"
+      },
+      {
+        "id": "1740917944678",
+        "key": "to rip",
+        "description": "déchirer"
+      },
+      {
+        "id": "1740918424705",
+        "key": "to whisper",
+        "description": "murmurer"
+      },
+      {
+        "id": "1741024223470",
+        "key": "to shave",
+        "description": "raser (la barbe, mais aussi objet (raser une montagne))"
+      },
+      {
+        "id": "1741024357455",
+        "key": "to figure",
+        "description": "penser"
+      },
+      {
+        "id": "1741024935561",
+        "key": "screw up",
+        "description": " foirer"
+      },
+      {
+        "id": "1741025009848",
+        "key": "to bolster",
+        "description": "renforcer / soutenir"
+      },
+      {
+        "id": "1741025374950",
+        "key": "to tie",
+        "description": "attacher"
+      },
+      {
+        "id": "1741025511617",
+        "key": "to blow",
+        "description": "souffler"
+      },
+      {
+        "id": "1741025801548",
+        "key": "to swell",
+        "description": "gonfler"
+      },
+      {
+        "id": "1741026052207",
+        "key": "to bother",
+        "description": "déranger"
+      },
+      {
+        "id": "1741026094877",
+        "key": "to stretch",
+        "description": "s'étirer"
+      },
+      {
+        "id": "1741369982462",
+        "key": "to cling",
+        "description": "s'accrocher (ex : slime qui s'accroche a un vetement)"
+      },
+      {
+        "id": "1741425508826",
+        "key": "to lurk",
+        "description": "se cacher"
+      },
+      {
+        "id": "1741425636729",
+        "key": "astound",
+        "description": "étonner"
+      },
+      {
+        "id": "1741425755793",
+        "key": "shatter",
+        "description": "briser"
+      },
+      {
+        "id": "1741426945021",
+        "key": "to pledge",
+        "description": "s'engager"
+      },
+      {
+        "id": "1741552265638",
+        "key": "to mumble",
+        "description": "marmonner"
+      },
+      {
+        "id": "1741611046380",
+        "key": "to atone",
+        "description": "expier"
+      }
+    ]
+  }
+}

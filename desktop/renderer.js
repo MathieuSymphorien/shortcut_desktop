@@ -11,6 +11,36 @@ async function saveFolders() {
   await window.electronAPI.saveFolders(folders);
 }
 
+async function autoLogin() {
+  const apiUrl = window.env.API_URL;
+  const username = window.env.API_USER;
+  const password = window.env.API_PASS;
+  // On appelle l'endpoint de login pour obtenir le token
+  try {
+    const response = await fetch(`${apiUrl}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Échec du login: ${response.status} - ${response.statusText}`
+      );
+    }
+
+    const data = await response.json();
+    window.env.setToken(data.token);
+    console.log(data.token);
+    console.log("Login auto réussi. Token =", data.token);
+  } catch (error) {
+    console.error("Erreur lors du login automatique :", error);
+    // Ici tu peux gérer l'erreur : afficher un message, etc.
+  }
+}
+
 async function loadFolders() {
   folders = await window.electronAPI.getFolders();
   // Si aucun dossier n'existe, on crée "Blender" avec le thème "Edition"
@@ -262,11 +292,17 @@ document
 //Envoi d'un raccourci à l'API
 async function sendShortcutToApi(shortcutData) {
   const apiUrl = window.env.API_URL;
-  const token = window.env.API_TOKEN;
-
+  const token = window.env.getToken();
   // Construisez l’URL selon votre Spring Boot (ex: "/shortcuts")
-  const endpoint = `${apiUrl}/api/import`;
-  console.log(shortcutData);
+  const endpoint = `${apiUrl}/english-words`;
+  const payload = {
+    id: Number(shortcutData.id),
+    theme: shortcutData.theme,
+    word: shortcutData.key,
+    translation: shortcutData.description,
+    learningLevel: 1,
+  };
+  console.log(payload);
   // Exemple avec fetch :
   const response = await fetch(endpoint, {
     method: "POST",
@@ -274,7 +310,7 @@ async function sendShortcutToApi(shortcutData) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(shortcutData),
+    body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
@@ -434,6 +470,7 @@ document.getElementById("importInput").addEventListener("change", function (e) {
 /********************
  * Initialisation
  ********************/
-window.addEventListener("DOMContentLoaded", () => {
-  loadFolders();
+window.addEventListener("DOMContentLoaded", async () => {
+  await autoLogin();
+  await loadFolders();
 });

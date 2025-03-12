@@ -8,7 +8,14 @@ contextBridge.exposeInMainWorld("electronAPI", {
   saveFolders: (folders) => ipcRenderer.invoke("save-folders", folders),
 });
 
+let storedToken = null;
+
 contextBridge.exposeInMainWorld("env", {
   API_URL: process.env.API_URL,
-  API_TOKEN: process.env.API_TOKEN,
+  API_USER: process.env.API_USER,
+  API_PASS: process.env.API_PASS,
+  getToken: () => storedToken,
+  setToken: (newToken) => {
+    storedToken = newToken;
+  },
 });
