@@ -1,0 +1,43 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: "21"
+          distribution: "temurin"
+
+      - name: Build with Maven
+        run: mvn clean package
+
+      # Construction de l'image Docker
+      - name: Build Docker image
+        run: |
+          docker build -t registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest .
+        env:
+          DOCKER_BUILDKIT: 1
+
+      - name: Log in to Docker registry
+        run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login registry.mathieu-symphorien.fr --username "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
+
+      # Tag et push de l'image Docker
+      - name: Tag and Push Docker image
+        run: |
+          docker tag registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest
+          docker push registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest

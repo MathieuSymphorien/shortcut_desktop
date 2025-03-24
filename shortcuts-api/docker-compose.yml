@@ -1,8 +1,7 @@
 version: "3.8"
 services:
-  db:
+  english-pg:
     image: postgres:15
-    container_name: my-postgres
     restart: always
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -12,20 +11,27 @@ services:
       - "${DB_PORT}:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
+    networks:
+      - english-network
 
-  spring-api:
+  english-api:
     build: .
-    container_name: my-spring-app
-    # restart: always
+    restart: always
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}
       SPRING_DATASOURCE_USERNAME: ${DB_USER}
       SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
       API_TOKEN: ${API_TOKEN}
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      - english-pg
+    networks:
+      - english-network
 
 volumes:
   db-data:
+
+networks:
+  english-network:
+    driver: bridge
