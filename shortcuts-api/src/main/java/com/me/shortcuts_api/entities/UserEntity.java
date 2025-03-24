@@ -1,6 +1,8 @@
 package com.me.shortcuts_api.entities;
 
 
+import java.time.LocalDate;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +24,11 @@ public class UserEntity {
 
     @Column(nullable = false)
     private String role;
+
+    private int currentStreak;
+    private int maxStreak;
+    private LocalDate lastActivityDate;
+    private int jokersLeft;
+    private LocalDate lastJokerResetDate;
 }
 
