@@ -9,5 +9,4 @@ import com.me.shortcuts_api.entities.ThemeEntity;
 
 @Repository
 public interface ThemeRepository extends JpaRepository<ThemeEntity, Long> {
-    Optional<ThemeEntity> findByTheme(String theme);
 }

@@ -16,7 +16,7 @@ public class ThemeService {
     @Autowired
     private ThemeRepository themeRepository;
 
-    public ThemeDTO createWord(ThemeDTO dto) {
+    public ThemeDTO createTheme(ThemeDTO dto) {
         if (dto.getTheme() == null || dto.getTheme().trim().isEmpty()) {
             throw new BadRequestException("Field 'theme' can't be empty.");
         }
@@ -25,20 +25,20 @@ public class ThemeService {
         return toDTO(saved);
     }
 
-    public ThemeDTO getWord(Long id) {
+    public ThemeDTO getTheme(Long id) {
         ThemeEntity entity = themeRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Theme not found"));
         return toDTO(entity);
     }
 
-    public List<ThemeDTO> getAllWords() {
+    public List<ThemeDTO> getAllThemes() {
         List<ThemeEntity> entities = themeRepository.findAll();
         return entities.stream()
                 .map(this::toDTO)
                 .toList();
     }
 
-    public ThemeDTO updateWord(Long id, ThemeDTO dto) {
+    public ThemeDTO updateTheme(Long id, ThemeDTO dto) {
         ThemeEntity entity = themeRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Theme not found"));
 
@@ -49,7 +49,7 @@ public class ThemeService {
         return toDTO(updated);
     }
 
-    public void deleteWord(Long id) {
+    public void deleteTheme(Long id) {
         if (!themeRepository.existsById(id)) {
             throw new  NotFoundException("Theme not found");
         }

@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class EnglishWordDTO {
     private Long id;
-    private String theme;
+    private Long theme;
     private String word;
     private String translation;
     private int learningLevel;

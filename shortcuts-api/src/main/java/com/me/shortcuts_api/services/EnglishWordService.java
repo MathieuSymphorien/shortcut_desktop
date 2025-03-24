@@ -54,7 +54,7 @@ public class EnglishWordService {
                 .orElseThrow(() -> new NotFoundException("Word not found"));
 
         entity.setTheme(
-            themeRepository.findByTheme(dto.getTheme())
+            themeRepository.findById(dto.getTheme())
                 .orElseThrow(() -> new BadRequestException("Theme not found: " + dto.getTheme()))
         );
         entity.setWord(dto.getWord());
@@ -72,10 +72,20 @@ public class EnglishWordService {
         englishWordRepository.deleteById(id);
     }
 
+    public List<EnglishWordDTO> getWordsByTheme(Long id) {
+        ThemeEntity themeEntity = themeRepository.findById(id)
+            .orElseThrow(() -> new NotFoundException("Theme not found"));
+    
+        List<EnglishWordEntity> entities = englishWordRepository.findByTheme(themeEntity);
+        return entities.stream()
+            .map(this::toDTO)
+            .toList();
+    } 
+
     // ----- Mapping methods -----
 
     private EnglishWordEntity toEntity(EnglishWordDTO dto) {
-    ThemeEntity theme = themeRepository.findByTheme(dto.getTheme())
+    ThemeEntity theme = themeRepository.findById(dto.getTheme())
             .orElseThrow(() -> new BadRequestException("Theme not found: " + dto.getTheme()));
 
         EnglishWordEntity entity = new EnglishWordEntity();
@@ -90,11 +100,13 @@ public class EnglishWordService {
     private EnglishWordDTO toDTO(EnglishWordEntity entity) {
         return new EnglishWordDTO(
             entity.getId(),
-            entity.getTheme().getTheme(),
+            entity.getTheme().getId(),
             entity.getWord(),
             entity.getTranslation(),
             entity.getLearningLevel(),
             entity.getIsDeleted()
         );
-    }    
+    }
+
+    
 }

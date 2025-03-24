@@ -9,6 +9,9 @@ import com.me.shortcuts_api.entities.DTO.EnglishWordDTO;
 import com.me.shortcuts_api.services.EnglishWordService;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/english-words")
@@ -49,5 +52,4 @@ public class EnglishWordController {
         englishWordService.deleteWord(id);
         return ResponseEntity.noContent().build();
     }
-
 }
