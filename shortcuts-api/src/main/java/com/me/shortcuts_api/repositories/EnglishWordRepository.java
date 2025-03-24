@@ -11,5 +11,7 @@ import com.me.shortcuts_api.entities.ThemeEntity;
 @Repository
 public interface EnglishWordRepository extends JpaRepository<EnglishWordEntity, Long> {
     List<EnglishWordEntity> findByTheme(ThemeEntity theme);
+    List<EnglishWordEntity> findByLearningLevel(int learningLevel);
+    List<EnglishWordEntity> findByThemeAndLearningLevel(ThemeEntity theme, int learningLevel);
 }
 

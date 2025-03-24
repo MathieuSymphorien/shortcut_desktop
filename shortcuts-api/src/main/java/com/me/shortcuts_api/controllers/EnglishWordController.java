@@ -52,4 +52,16 @@ public class EnglishWordController {
         englishWordService.deleteWord(id);
         return ResponseEntity.noContent().build();
     }
+
+    // Get all words by learning level
+    @GetMapping("/level")
+    public List<EnglishWordDTO> getWordsByLevel(@RequestParam Integer level) {
+        return englishWordService.getWordsByLevel(level);
+    }
+
+    // Get all words by theme and learning level
+    @GetMapping("/theme-level")
+    public List<EnglishWordDTO> getWordsByThemeAndLevel(@RequestParam Long themeId, @RequestParam Integer level) {
+        return englishWordService.getWordsByThemeAndLevel(themeId, level);
+    }
 }

@@ -80,7 +80,24 @@ public class EnglishWordService {
         return entities.stream()
             .map(this::toDTO)
             .toList();
-    } 
+    }
+
+    public List<EnglishWordDTO> getWordsByLevel(Integer level) {
+        List<EnglishWordEntity> entities = englishWordRepository.findByLearningLevel(level);
+        return entities.stream()
+            .map(this::toDTO)
+            .toList();
+    }
+
+    public List<EnglishWordDTO> getWordsByThemeAndLevel(Long themeId, Integer level) {
+        ThemeEntity themeEntity = themeRepository.findById(themeId)
+            .orElseThrow(() -> new NotFoundException("Theme not found"));
+    
+        List<EnglishWordEntity> entities = englishWordRepository.findByThemeAndLearningLevel(themeEntity, level);
+        return entities.stream()
+            .map(this::toDTO)
+            .toList();
+    }
 
     // ----- Mapping methods -----
 
@@ -107,6 +124,5 @@ public class EnglishWordService {
             entity.getIsDeleted()
         );
     }
-
     
 }
