@@ -15,9 +15,13 @@ public class EnglishWordEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String theme;
+    @ManyToOne
+    @JoinColumn(name = "theme_id", nullable = false)
+    private ThemeEntity theme;
+
     private String word;
     private String translation;
     @Column(name = "learning_level")
     private int learningLevel = 1;
+    private Boolean isDeleted = false;
 }

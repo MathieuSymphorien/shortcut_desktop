@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.me.shortcuts_api.entities.EnglishWordEntity;
+import com.me.shortcuts_api.entities.ThemeEntity;
 import com.me.shortcuts_api.entities.DTO.EnglishWordDTO;
 import com.me.shortcuts_api.exception.BadRequestException;
 import com.me.shortcuts_api.exception.NotFoundException;
 import com.me.shortcuts_api.repositories.EnglishWordRepository;
+import com.me.shortcuts_api.repositories.ThemeRepository;
 
 import java.util.List;
 
@@ -16,6 +18,10 @@ public class EnglishWordService {
 
     @Autowired
     private EnglishWordRepository englishWordRepository;
+
+    @Autowired
+    private ThemeRepository themeRepository;
+
 
     /**
      * Crée un enregistrement à partir du DTO, le sauvegarde en base, puis retourne
@@ -47,8 +53,10 @@ public class EnglishWordService {
         EnglishWordEntity entity = englishWordRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Word not found"));
 
-        // Mise à jour des champs depuis le DTO
-        entity.setTheme(dto.getTheme());
+        entity.setTheme(
+            themeRepository.findByTheme(dto.getTheme())
+                .orElseThrow(() -> new BadRequestException("Theme not found: " + dto.getTheme()))
+        );
         entity.setWord(dto.getWord());
         entity.setTranslation(dto.getTranslation());
         entity.setLearningLevel(dto.getLearningLevel());
@@ -67,21 +75,26 @@ public class EnglishWordService {
     // ----- Mapping methods -----
 
     private EnglishWordEntity toEntity(EnglishWordDTO dto) {
+    ThemeEntity theme = themeRepository.findByTheme(dto.getTheme())
+            .orElseThrow(() -> new BadRequestException("Theme not found: " + dto.getTheme()));
+
         EnglishWordEntity entity = new EnglishWordEntity();
-        entity.setTheme(dto.getTheme());
+        entity.setTheme(theme);
         entity.setWord(dto.getWord());
         entity.setTranslation(dto.getTranslation());
         entity.setLearningLevel(dto.getLearningLevel());
+        entity.setIsDeleted(dto.getIsDeleted());
         return entity;
     }
 
     private EnglishWordDTO toDTO(EnglishWordEntity entity) {
         return new EnglishWordDTO(
-                entity.getId(),
-                entity.getTheme(),
-                entity.getWord(),
-                entity.getTranslation(),
-                entity.getLearningLevel()
+            entity.getId(),
+            entity.getTheme().getTheme(),
+            entity.getWord(),
+            entity.getTranslation(),
+            entity.getLearningLevel(),
+            entity.getIsDeleted()
         );
-    }
+    }    
 }
