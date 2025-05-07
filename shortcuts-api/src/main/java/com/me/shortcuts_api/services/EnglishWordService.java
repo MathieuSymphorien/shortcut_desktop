@@ -32,9 +32,12 @@ public class EnglishWordService {
             throw new BadRequestException("Field 'word' can't be empty.");
         }
         EnglishWordEntity entity = toEntity(dto);
+        entity.setLearningLevel(1);
+        entity.setIsDeleted(false);
         EnglishWordEntity saved = englishWordRepository.save(entity);
         return toDTO(saved);
     }
+    
 
     public EnglishWordDTO getWord(Long id) {
         EnglishWordEntity entity = englishWordRepository.findById(id)
@@ -43,61 +46,65 @@ public class EnglishWordService {
     }
 
     public List<EnglishWordDTO> getAllWords() {
-        List<EnglishWordEntity> entities = englishWordRepository.findAll();
-        return entities.stream()
-                .map(this::toDTO)
-                .toList();
+        return englishWordRepository.findByIsDeletedFalse()
+            .stream().map(this::toDTO).toList();
     }
 
     public EnglishWordDTO updateWord(Long id, EnglishWordDTO dto) {
         EnglishWordEntity entity = englishWordRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Word not found"));
-
+    
+        int lvl = dto.getLearningLevel();
+        if (lvl < 1 || lvl > 5) {
+            throw new BadRequestException("Field 'learningLevel' must be between 1 and 5.");
+        }
+    
         entity.setTheme(
             themeRepository.findById(dto.getTheme())
                 .orElseThrow(() -> new BadRequestException("Theme not found: " + dto.getTheme()))
         );
         entity.setWord(dto.getWord());
         entity.setTranslation(dto.getTranslation());
-        entity.setLearningLevel(dto.getLearningLevel());
-
+        entity.setLearningLevel(lvl);
+    
         EnglishWordEntity updated = englishWordRepository.save(entity);
         return toDTO(updated);
     }
+    
 
     public void deleteWord(Long id) {
-        if (!englishWordRepository.existsById(id)) {
-            throw new  NotFoundException("Word not found");
-        }
-        englishWordRepository.deleteById(id);
+        EnglishWordEntity entity = englishWordRepository.findById(id)
+            .orElseThrow(() -> new NotFoundException("Word not found"));
+        entity.setIsDeleted(true);
+        englishWordRepository.save(entity);
     }
+    
 
     public List<EnglishWordDTO> getWordsByTheme(Long id) {
-        ThemeEntity themeEntity = themeRepository.findById(id)
+        ThemeEntity theme = themeRepository.findById(id)
             .orElseThrow(() -> new NotFoundException("Theme not found"));
-    
-        List<EnglishWordEntity> entities = englishWordRepository.findByTheme(themeEntity);
-        return entities.stream()
-            .map(this::toDTO)
-            .toList();
+        return englishWordRepository.findByThemeAndIsDeletedFalse(theme)
+            .stream().map(this::toDTO).toList();
     }
 
     public List<EnglishWordDTO> getWordsByLevel(Integer level) {
-        List<EnglishWordEntity> entities = englishWordRepository.findByLearningLevel(level);
-        return entities.stream()
-            .map(this::toDTO)
-            .toList();
+        return englishWordRepository.findByLearningLevelAndIsDeletedFalse(level)
+            .stream().map(this::toDTO).toList();
     }
 
     public List<EnglishWordDTO> getWordsByThemeAndLevel(Long themeId, Integer level) {
-        ThemeEntity themeEntity = themeRepository.findById(themeId)
+        ThemeEntity theme = themeRepository.findById(themeId)
             .orElseThrow(() -> new NotFoundException("Theme not found"));
-    
-        List<EnglishWordEntity> entities = englishWordRepository.findByThemeAndLearningLevel(themeEntity, level);
-        return entities.stream()
-            .map(this::toDTO)
-            .toList();
+        return englishWordRepository.findByThemeAndLearningLevelAndIsDeletedFalse(theme, level)
+            .stream().map(this::toDTO).toList();
     }
+
+    public List<EnglishWordDTO> getReviewWords(int count) {
+        return englishWordRepository
+            .findRandomByLevelAndNotDeleted(1, count)
+            .stream().map(this::toDTO).toList();
+    }
+    
 
     // ----- Mapping methods -----
 

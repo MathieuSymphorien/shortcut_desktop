@@ -9,8 +9,6 @@ import com.me.shortcuts_api.entities.DTO.EnglishWordDTO;
 import com.me.shortcuts_api.services.EnglishWordService;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -64,4 +62,12 @@ public class EnglishWordController {
     public List<EnglishWordDTO> getWordsByThemeAndLevel(@RequestParam Long themeId, @RequestParam Integer level) {
         return englishWordService.getWordsByThemeAndLevel(themeId, level);
     }
+
+    @GetMapping("/review")
+    public List<EnglishWordDTO> review(
+            @RequestParam(defaultValue = "5") int count
+    ) {
+        return englishWordService.getReviewWords(count);
+    }
+
 }
