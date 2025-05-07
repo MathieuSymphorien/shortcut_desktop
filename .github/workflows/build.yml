@@ -41,5 +41,4 @@ jobs:
       # Tag et push de l'image Docker
       - name: Tag and Push Docker image
         run: |
-          docker tag registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest
           docker push registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest
