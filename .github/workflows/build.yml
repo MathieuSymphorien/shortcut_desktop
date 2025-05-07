@@ -33,7 +33,7 @@ jobs:
           docker build --no-cache -t registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest .
         working-directory: shortcuts-api
         env:
-          DOCKER_BUILDKIT: 1
+          DOCKER_BUILDKIT: 0
 
       - name: Log in to Docker registry
         run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login registry.mathieu-symphorien.fr --username "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
