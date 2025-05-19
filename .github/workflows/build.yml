@@ -30,7 +30,7 @@ jobs:
       # Construction de l'image Docker
       - name: Build Docker image
         run: |
-          docker build -t registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest .
+          docker build --no-cache -t registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest .
         working-directory: shortcuts-api
         env:
           DOCKER_BUILDKIT: 1
