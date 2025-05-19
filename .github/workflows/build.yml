@@ -30,10 +30,10 @@ jobs:
       # Construction de l'image Docker
       - name: Build Docker image
         run: |
-          docker build --no-cache -t registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest .
+          docker build -t registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest .
         working-directory: shortcuts-api
         env:
-          DOCKER_BUILDKIT: 0
+          DOCKER_BUILDKIT: 1
 
       - name: Log in to Docker registry
         run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login registry.mathieu-symphorien.fr --username "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
@@ -41,4 +41,5 @@ jobs:
       # Tag et push de l'image Docker
       - name: Tag and Push Docker image
         run: |
+          docker tag registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest
           docker push registry.mathieu-symphorien.fr/shortcuts-api-english-api:latest
